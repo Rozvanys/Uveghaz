@@ -7,14 +7,27 @@ using System.Threading.Tasks;
 
 namespace Uveghaz
 {
+	enum NovenyFajatak
+	{
+		Rozsa, paradicsom, krumpli, cukkini, paprika, mak
+	}
 	internal class NovenyFaj
 	{
-		public string nev;
-		public int maxSuruseg;
-		public NovenyFaj(string nev, int maxSuruseg)
+
+		private string nev;
+		private int maxSuruseg;
+		private bool betegseg;
+		private int betegsegHajlam;
+		public NovenyFaj(string nev, int maxSuruseg, bool betegseg, int betegsegHajlam)
 		{
 			this.nev = nev;
 			this.maxSuruseg = maxSuruseg;
+			this.betegseg = betegseg;
+			this.betegsegHajlam = betegsegHajlam;
 		}
+
+		public string Nev { get => nev; set => nev = value; }
+		public int MaxSuruseg { get => maxSuruseg; set => maxSuruseg = value; }
+		public string Azonosito { get => nev.Substring(0, 3); }
 	}
 }

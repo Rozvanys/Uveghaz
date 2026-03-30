@@ -30,7 +30,12 @@ namespace Uveghaz
 		}
 		public void Telepit(int x, int y, NovenyFaj faj, int mennyiseg)
 		{
-			racs[x, y].Telepit(faj, mennyiseg); 
+			if (racs[x,y].Ures())
+			{
+				Console.WriteLine("A cella nem üres!");
+				racs[x, y].Telepit(faj, mennyiseg);
+			}
+			
 		}
 		public void TerepKiir()
 		{
@@ -39,9 +44,9 @@ namespace Uveghaz
 				for (int j = 0; j < meret; j++)
 				{
 					if (racs[i, j].Ures())
-						Console.Write("[ ]");
+						Console.Write($"[{"Üres",6} ]");
 					else
-						Console.Write("[X]");
+						Console.Write($"[{racs[i, j].noveny.Azonosito}:{racs[i, j].egyedszam,3}]");
 				}
 				Console.WriteLine();
 			}
