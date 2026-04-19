@@ -7,27 +7,50 @@ using System.Threading.Tasks;
 
 namespace Uveghaz
 {
-	enum NovenyFajatak
+	enum NovenyFajtak
 	{
-		Rozsa, paradicsom, krumpli, cukkini, paprika, mak
+		Rozsa, Paradicsom, Krumpli, Cukkini, Paprika, Mak
 	}
 	internal class NovenyFaj
 	{
 
-		private string nev;
+		private NovenyFajtak fajta;
 		private int maxSuruseg;
-		private bool betegseg;
-		private int betegsegHajlam;
-		public NovenyFaj(string nev, int maxSuruseg, bool betegseg, int betegsegHajlam)
+		private int vizigeny;
+		public NovenyFaj(NovenyFajtak valasztottFajta)
 		{
-			this.nev = nev;
-			this.maxSuruseg = maxSuruseg;
-			this.betegseg = betegseg;
-			this.betegsegHajlam = betegsegHajlam;
+			this.fajta = valasztottFajta;
+			switch (valasztottFajta){
+				case NovenyFajtak.Rozsa:
+					this.maxSuruseg = 4;
+					this.vizigeny = 60;
+					break;
+				case NovenyFajtak.Paradicsom:
+					this.maxSuruseg = 6;
+					this.vizigeny = 80;
+					break;
+				case NovenyFajtak.Krumpli:
+					this.maxSuruseg = 8;
+					this.vizigeny = 40;
+					break;
+				case NovenyFajtak.Cukkini:
+					this.maxSuruseg = 3;
+					this.vizigeny = 70;
+					break;
+				case NovenyFajtak.Paprika:
+					this.maxSuruseg = 5;
+					this.vizigeny = 65;
+					break;
+				case NovenyFajtak.Mak:
+					this.maxSuruseg = 10;
+					this.vizigeny = 30;
+					break;
+			}
 		}
 
-		public string Nev { get => nev; set => nev = value; }
 		public int MaxSuruseg { get => maxSuruseg; set => maxSuruseg = value; }
-		public string Azonosito { get => nev.Substring(0, 3); }
+		public int Vizigeny { get => vizigeny; set => vizigeny = value; }
+		public NovenyFajtak Fajta { get => fajta; set => fajta = value; }
+		public string Azonosito => Fajta.ToString().Substring(0, 3).ToUpper();
 	}
 }

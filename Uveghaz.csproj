@@ -43,13 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adattar.cs" />
-    <Compile Include="Beavatkozas.cs" />
     <Compile Include="Cella.cs" />
     <Compile Include="ElemzoMotor.cs" />
+    <Compile Include="Idojaras.cs" />
     <Compile Include="Kezelo.cs" />
     <Compile Include="NovenyFaj.cs" />
-    <Compile Include="NovenyKezelo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Riasztas.cs" />

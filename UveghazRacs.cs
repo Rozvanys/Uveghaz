@@ -32,24 +32,51 @@ namespace Uveghaz
 		{
 			if (racs[x,y].Ures())
 			{
-				Console.WriteLine("A cella nem üres!");
 				racs[x, y].Telepit(faj, mennyiseg);
+				Console.WriteLine($"Telepítettél {mennyiseg} db {faj.Fajta}-t!");
+			}else{
+				Console.WriteLine("A cellába már van telepítve növény!");
 			}
 			
 		}
 		public void TerepKiir()
 		{
+			Console.WriteLine($"\n---- Üvegház térkép ----");
 			for (int i = 0; i < meret; i++)
 			{
 				for (int j = 0; j < meret; j++)
 				{
-					if (racs[i, j].Ures())
-						Console.Write($"[{"Üres",6} ]");
-					else
-						Console.Write($"[{racs[i, j].noveny.Azonosito}:{racs[i, j].egyedszam,3}]");
+					Cella aktualis = racs[i, j];
+					if (aktualis.Ures())
+						Console.Write($"[{"[Üres]\t"} ]");
+					else{
+						string betegJelzo = " ";
+						if (aktualis.IsBeteg)
+							betegJelzo = "!";
+						Console.Write($"[{aktualis.Noveny.Azonosito}:{aktualis.Egyedszam,2} {betegJelzo}]\t");
+					}
+						
 				}
-				Console.WriteLine();
+				Console.WriteLine("\n");
 			}
+		}
+		public void ParcellaInfo(int x, int y)
+		{
+			Cella vizsgaltCella = racs[x, y];
+			Console.WriteLine($"\n---- Parcella Info ({x}, {y}) ----");
+			if (vizsgaltCella.Ures())
+			{
+				Console.WriteLine("A parcella üres.");
+				Console.WriteLine($"A föld nedvessége: {vizsgaltCella.Nedvesseg}%");
+			}
+			else
+			{
+				Console.WriteLine($"Növényfaj: {vizsgaltCella.Noveny.Fajta}");
+				Console.WriteLine($"Egyedszám: {vizsgaltCella.Egyedszam} / {vizsgaltCella.Noveny.MaxSuruseg}");
+				Console.WriteLine($"A föld nedvessége: {vizsgaltCella.Nedvesseg}% (igény: {vizsgaltCella.Noveny.Vizigeny}%)");
+				Console.WriteLine($"Beteg-e a növény? {(vizsgaltCella.IsBeteg ? "Igen" : "Nem")}");
+			}
+			Console.WriteLine("");
 		}
 	}
 }
